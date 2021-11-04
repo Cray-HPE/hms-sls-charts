@@ -9,7 +9,8 @@ maintainers:
   - name: rsjostrand-hpe
 dependencies:
   - name: cray-service
-    version: "~6.0.0"
+    # version: "~7.0.0" 
+    version: 7.0.0-20211104163458+17dbc2e # TODO This needs to be ~7.0.0 once the new cray-service chart has been released.
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
 annotations:
   artifacthub.io/changes: |

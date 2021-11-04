@@ -16,3 +16,6 @@ kubernetes/.packaged
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# VSCode
+.vscode

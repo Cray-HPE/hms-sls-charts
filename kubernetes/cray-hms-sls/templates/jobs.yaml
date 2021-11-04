@@ -17,7 +17,8 @@ spec:
       serviceAccountName: "cray-hms-sls"
       containers:
         - name: nameserver-getter
-          image: "{{ include "cray-sls.image-prefix" .Values }}loftsman/docker-kubectl:{{ .Values.dockerKubectlTag }}"
+          image: "{{ .Values.kubectl.image.repository }}:{{ .Values.kubectl.image.tag }}"
+          imagePullPolicy: "{{ .Values.kubectl.image.pullPolicy }}" 
           command:
           - /bin/sh
           - -c
@@ -58,7 +59,8 @@ spec:
       serviceAccountName: "cray-hms-sls"
       containers:
         - name: job-deleter
-          image: "{{ include "cray-sls.image-prefix" .Values }}loftsman/docker-kubectl:{{ .Values.dockerKubectlTag }}"
+          image: "{{ .Values.kubectl.image.repository }}:{{ .Values.kubectl.image.tag }}"
+          imagePullPolicy: "{{ .Values.kubectl.image.pullPolicy }}" 
           command:
           - /bin/sh
           - -c
@@ -89,7 +91,8 @@ spec:
       serviceAccountName: "jobs-watcher"
       initContainers:
         - name: cray-sls-init
-          image: {{ include "cray-sls.image-prefix" .Values }}cray/cray-sls:{{ include "cray-sls.imageTag" . }}
+          image: "{{ .Values.image.repository }}:{{ include "cray-sls.imageTag" . }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["/entrypoint.sh"]
           args: ["sls-init"]
           env:
@@ -151,7 +154,8 @@ spec:
                 configMapKeyRef:
                   name: cray-sls-init-loader-nameserver
                   key: nameserver
-          image: {{ include "cray-sls.image-prefix" .Values }}cray/cray-sls:{{ include "cray-sls.imageTag" . }}
+          image: "{{ .Values.image.repository }}:{{ include "cray-sls.imageTag" . }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["/entrypoint.sh"]
           args: ["sls-loader"]
       volumes:

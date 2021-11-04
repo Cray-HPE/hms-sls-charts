@@ -1,6 +1,14 @@
 ---
 
-dockerKubectlTag: 0.2.0
+kubectl:
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.19.15
+    pullPolicy: IfNotPresent
+
+image:
+  repository: artifactory.algol60.net/csm-docker/stable/cray-sls
+  pullPolicy: IfNotPresent
 
 schemaVersion: "3"
 schemaStorageClass: ceph-cephfs-external
@@ -41,7 +49,8 @@ cray-service:
     cray-sls:
       name: "cray-sls"
       image:
-        repository: "cray/cray-sls"
+        repository: artifactory.algol60.net/csm-docker/stable/cray-sls
+        pullPolicy: IfNotPresent
       ports:
         - name: http
           containerPort: 8376
