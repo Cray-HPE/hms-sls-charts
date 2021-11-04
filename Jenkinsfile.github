@@ -14,6 +14,9 @@ pipeline {
         DESCRIPTION = "Cray System Layout Service"
         IS_STABLE = getBuildIsStable() // Right now this will be true with a Git tag
         CHART_NAME = "cray-hms-sls"
+        // For a stable build the chart version will be what is present in Chart.yaml. 
+        // For an unsable build it will be the version in Chart.yaml with the timestamp and Git commit hash appended onto it.
+        CHART_VERSION = getChartVersion(name: env.CHART_NAME, isStable: env.IS_STABLE) 
     }
 
     stages {
