@@ -11,54 +11,22 @@ pipeline {
     }
 
     environment {
-        NAME = "cray-sls"
         DESCRIPTION = "Cray System Layout Service"
-        IS_STABLE = getBuildIsStable()
-        VERSION = getDockerBuildVersion(isStable: env.IS_STABLE)
-        DOCKER_ARGS = getDockerBuildArgs(name: "hms-sls", description: env.DESCRIPTION, version: env.VERSION)
-        NO_CACHE = "--no-cache"
+        IS_STABLE = getBuildIsStable() // Right now this will be true with a Git tag
         CHART_NAME = "cray-hms-sls"
-        CHART_VERSION = getChartVersion(version: env.VERSION)
-        TEST_NAME = "hms-sls-ct-test"
-        TEST_SPEC_FILE = "hms-sls-ct-test.spec"
-        BUILD_METADATA = getRpmRevision(isStable: env.IS_STABLE)
     }
 
     stages {
-        stage("Image") {
-            steps {
-                sh "make image"
-            }
-        }
-
         stage("Chart") {
             steps {
-                updateCsmHelmChartAppVersion(chartPath: "${WORKSPACE}/kubernetes/${CHART_NAME}", appVersion:  env.VERSION)
                 sh "make chart"
-            }
-        }
-
-        stage("Run Unit Tests") {
-            steps {
-                sh "make unittest"
-            }
-        }
-
-        stage("Test Rpm") {
-            steps {
-                echo "RPM build metadata is: ${env.BUILD_METADATA}"
-                runLibraryScript("addRpmMetaData.sh", env.TEST_SPEC_FILE)
-                sh "make test_rpm"
             }
         }
 
         stage("Publish") {
             steps {
                 script {
-                    publishCsmDockerImage(image: env.NAME, tag: env.VERSION, isStable: env.IS_STABLE)
                     publishCsmHelmCharts(component: env.CHART_NAME, chartsPath: "${WORKSPACE}/kubernetes/.packaged", isStable: env.IS_STABLE)
-                    publishCsmRpms(component: env.TEST_NAME, pattern: "dist/sls-ct-test-rpmbuild/RPMS/x86_64/*.rpm", arch: "x86_64", isStable: env.IS_STABLE)
-                    publishCsmRpms(component: env.TEST_NAME, pattern: "dist/sls-ct-test-rpmbuild/SRPMS/*.rpm", arch: "src", isStable: env.IS_STABLE)
                 }
             }
         }

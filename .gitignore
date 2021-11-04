@@ -12,8 +12,7 @@
 *.out
 
 # Helm
-kubernetes/cray-hms-sls/helm
-kubernetes/cray-hms-sls/helm-generated
+kubernetes/.packaged
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
