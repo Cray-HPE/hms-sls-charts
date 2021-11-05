@@ -94,3 +94,6 @@ cray-service:
     enabled: true
     prefix: "/apis/sls/"
     uri: "/"
+
+global:
+  appVersion: latest # By default use the latest tag, unless overiden via Helm
