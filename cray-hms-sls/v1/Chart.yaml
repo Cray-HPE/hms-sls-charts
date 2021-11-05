@@ -3,3 +3,5 @@ description: "Kubernetes resources for cray-hms-sls"
 name: "cray-hms-sls"
 home: "HMS/hms-sls"
 version: 1.11.0
+annotations:
+  cray-hpe.github.io/allowed-csm-versions: "<= 1.1.0" # CSM 1.1 and before 
