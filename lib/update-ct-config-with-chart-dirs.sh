@@ -7,7 +7,7 @@ set -xeo pipefail
 CHARTS_BASE=$1
 if [[ -z "$CHARTS_BASE" ]]; then
     echo "Warning: Chart base path not provided, , defaulting to ./charts"
-    CHARTS_BASE=./charts
+    CHARTS_BASE=charts
 fi
 
 if [[ -z "$CT_CONFIG" ]]; then
