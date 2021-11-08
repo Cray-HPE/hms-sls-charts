@@ -27,8 +27,8 @@ CHART_NAME ?= cray-hms-sls
 all: chart
 
 chart:
-	./lib/build_all_charts.sh ${CHART_NAME}
+	./lib/build_all_charts.sh ./charts
 
 clean:
-	./lib/clean_all_charts.sh ${CHART_NAME}
+	./lib/clean_all_charts.sh ./charts
 	rm -rf .packaged
