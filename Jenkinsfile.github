@@ -23,6 +23,7 @@ pipeline {
         stage("Chart") {
             steps {
                 sh "helm repo remove stable || true"
+                sh "helm repo remove cray-internal || true"
                 sh "make chart"
             }
         }
