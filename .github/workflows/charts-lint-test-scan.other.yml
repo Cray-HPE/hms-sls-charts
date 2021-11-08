@@ -27,6 +27,10 @@ on:
         type: string
         required: false
         default: ct.yaml
+      ct-yaml-post-script:
+        description: Bash script that runs after the Chart testing configuration file is configured.
+        type: string
+        required: false
       lint-pre-script:
         description: Bash script that runs before `ct lint`
         type: string
@@ -106,6 +110,11 @@ jobs:
           yq eval-all --inplace -P '. as $item ireduce ({}; . * $item )' "$CT_CONFIG" <(echo "target-branch: $GITHUB_BASE_REF") <(echo "$INPUTS_CT_CONFIG")
           cat "$CT_CONFIG"
         if: inputs.lint-charts || inputs.test-charts
+
+      - name: Customize chart-testing configuration
+        shell: bash
+        run: ${{ inputs.ct-yaml-post-script }}
+        if: (inputs.lint-charts || inputs.lint-pre-script) && inputs.ct-yaml-post-script
 
       - name: List changed charts
         id: list-changed
