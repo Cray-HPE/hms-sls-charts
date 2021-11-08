@@ -22,6 +22,7 @@ pipeline {
     stages {
         stage("Chart") {
             steps {
+                sh "helm repo remove stable || true"
                 sh "make chart"
             }
         }
