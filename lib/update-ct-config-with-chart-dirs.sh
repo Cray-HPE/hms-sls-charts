@@ -6,12 +6,12 @@ YQ=/Users/rysjostran/Downloads/yq_darwin_amd64
 
 CHARTS_BASE=$1
 if [[ -z "$CHARTS_BASE" ]]; then
-    echo "Error: Chart base path not provided"
-    exit 1
+    echo "Warning: Chart base path not provided, , defaulting to ./charts"
+    CHARTS_BASE=./charts
 fi
 
 if [[ -z "$CT_CONFIG" ]]; then
-    echo "Warning: CT_CONFIG enviroment variable is not set default to ct.yaml"
+    echo "Warning: CT_CONFIG enviroment variable is not set, defaulting to ct.yaml"
     CT_CONFIG="ct.yaml"
 fi
 
