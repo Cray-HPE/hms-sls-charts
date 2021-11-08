@@ -1,5 +1,6 @@
 @Library('csm-shared-library') _
 
+// TODO This needs to make it into the CSM Shared library
 def getUnstableBuildChartSuffix(Map config = [:]) {
     if(!config.containsKey("isStable")){
         error "Must pass isStable to getUnstableBuildChartSuffix"
@@ -39,20 +40,12 @@ pipeline {
     }
 
     stages {
-        stage("Re-add chart repos") {
-            steps {
-                sh "helm repo add stable https://charts.helm.sh/stable || true" 
-                sh "helm repo add cray-internal  http://helmrepo.dev.cray.com:8080 || true" 
-            }
-        }
-
         stage("Chart") {
             steps {
                 sh "make chart"
             }
         }
 
-        // Disable while testing
         stage("Publish") {
             steps {
                 script {
