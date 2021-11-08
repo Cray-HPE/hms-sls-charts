@@ -17,7 +17,7 @@ def getUnstableBuildChartSuffix(Map config = [:]) {
         return version
     }
 
-    return "${buildDate}_${gitSha}"
+    return "${buildDate}+${gitSha}"
 }
 
 pipeline {
