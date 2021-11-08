@@ -4,4 +4,4 @@ set -exu
 
 yq --version
 
-cat ct-config.yaml
+cat $CT_CONFIG
