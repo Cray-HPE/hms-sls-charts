@@ -23,20 +23,13 @@
 
 # Helm Chart
 CHART_NAME ?= cray-hms-sls
-ifdef CHART_VERSION # TODO make this just be the gittimestamp/hash so it can be applied to 1 or more charts
-					# Need to have a way to get the chart version then apply the gitbash
-	HELM_PACKAGE_OPTS := --version ${CHART_VERSION}
-endif
-
 
 all: chart
 
 chart: v1 v2
-	echo "${IS_STABLE}"
 
-v%:
-	helm dep up ${CHART_NAME}/$@
-	helm package ${CHART_NAME}/$@ -d .packaged ${HELM_PACKAGE_OPTS}
+v%: 
+	./lib/build_chart.sh ${CHART_NAME}/$@
 
 clean: clean-v1 clean-v2
 	rm -rf .packaged
