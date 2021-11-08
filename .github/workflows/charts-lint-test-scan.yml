@@ -14,7 +14,7 @@ jobs:
       lint-charts: ${{ github.event_name == 'pull_request' }}
       ct-config: |
         chart-dirs:
-          - kubernetes
+          - cray-hms-sls
         validate-maintainers: false
       scan-image-snyk-args: "--severity-threshold=high"
     secrets:
