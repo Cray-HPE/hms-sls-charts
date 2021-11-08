@@ -39,11 +39,11 @@ pipeline {
     }
 
     stages {
-        stage("Remove legacy chart repositories") {
-             steps {
-                sh "helm repo remove stable || true"
-                sh "helm repo remove cray-internal || true"
-             }
+        stage("Re-add chart repos") {
+            steps {
+                sh "helm repo add stable https://charts.helm.sh/stable || true" 
+                sh "helm repo add cray-internal  http://helmrepo.dev.cray.com:8080 || true" 
+            }
         }
 
         stage("Chart") {
@@ -53,12 +53,12 @@ pipeline {
         }
 
         // Disable while testing
-        // stage("Publish") {
-        //     steps {
-        //         script {
-        //             publishCsmHelmCharts(component: env.CHART_NAME, chartsPath: "${WORKSPACE}/kubernetes/.packaged", isStable: env.IS_STABLE)
-        //         }
-        //     }
-        // }
+        stage("Publish") {
+            steps {
+                script {
+                    publishCsmHelmCharts(component: env.CHART_NAME, chartsPath: "${WORKSPACE}/.packaged", isStable: env.IS_STABLE)
+                }
+            }
+        }
     }
 }
