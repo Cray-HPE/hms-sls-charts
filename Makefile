@@ -32,6 +32,7 @@ endif
 all: chart
 
 chart: v1 v2
+	echo "${IS_STABLE}"
 
 v%:
 	helm dep up ${CHART_NAME}/$@
