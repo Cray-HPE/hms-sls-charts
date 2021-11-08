@@ -1,6 +1,6 @@
 @Library('csm-shared-library') _
 
-def getUnstableBuildChartSuffix(Map userConfig = [:]) {
+def getUnstableBuildChartSuffix(Map config = [:]) {
     if(!config.containsKey("isStable")){
         error "Must pass isStable to getUnstableBuildChartSuffix"
     }
