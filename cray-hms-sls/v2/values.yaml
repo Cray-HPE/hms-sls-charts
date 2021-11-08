@@ -15,14 +15,14 @@ schemaStorageClass: ceph-cephfs-external
 schemaAccessMode: ReadWriteMany
 
 namespaceGetter:
-  resolvDir: /etc/ # For CSM 1.1 and older use /run/netconfig/
+  resolvDir: /etc/  # For CSM 1.1 and older use /run/netconfig/
 
 loader:
   forceUpload: false
   checkS3Marker: true
   checkSLSContents: false
   max_ping_bucket_attempts: 30
-  use_s3_dns_hack: true # Should be false on vshasta, true on baremetal
+  use_s3_dns_hack: true  # Should be false on vshasta, true on baremetal
   s3_dns_lookup_attempts: 30
 
 cray-service:
@@ -89,11 +89,11 @@ cray-service:
       sls: slsuser
     backup:
       enabled: true
-      schedule: "10 23 * * *" # Once per day at 11:10 pm
+      schedule: "10 23 * * *"  # Once per day at 11:10 pm
   ingress:
     enabled: true
     prefix: "/apis/sls/"
     uri: "/"
 
 global:
-  appVersion: latest # By default use the latest tag, unless overiden via Helm
+  appVersion: latest  # By default use the latest tag, unless overiden via Helm

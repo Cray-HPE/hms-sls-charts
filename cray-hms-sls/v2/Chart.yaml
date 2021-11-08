@@ -9,7 +9,7 @@ maintainers:
   - name: rsjostrand-hpe
 dependencies:
   - name: cray-service
-    version: "~7.0.0" 
+    version: "~7.0.0"
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
 annotations:
   artifacthub.io/changes: |
@@ -18,5 +18,5 @@ annotations:
     - name: curl
       image: artifactory.algol60.net/csm-docker/stable/docker.io/curlimages/curl:7.73.0
   artifacthub.io/license: MIT
-  cray-hpe.github.io/allowed-csm-versions: ">= 1.2.0" # CSM 1.2 and later
-  cray-hpe.github.io/appversion-compatibility: "^1.11.0" # App version 1.11.0 <= x.y.z < 2.0.0. Allow any later container image before a major bump  
+  cray-hpe.github.io/allowed-csm-versions: ">= 1.2.0"  # CSM 1.2 and later
+  cray-hpe.github.io/appversion-compatibility: "^1.11.0"  # App version 1.11.0 <= x.y.z < 2.0.0. Allow any later container image before a major bump

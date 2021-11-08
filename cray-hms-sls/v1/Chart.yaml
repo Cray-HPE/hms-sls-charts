@@ -4,5 +4,5 @@ name: "cray-hms-sls"
 home: "HMS/hms-sls"
 version: 1.11.0
 annotations:
-  cray-hpe.github.io/allowed-csm-versions: "<= 1.1.0" # CSM 1.1 and before 
-  cray-hpe.github.io/appversion-compatibility: "^1.11.0" # App version 1.11.0 <= x.y.z < 2.0.0.
+  cray-hpe.github.io/allowed-csm-versions: "<= 1.1.0"  # CSM 1.1 and before
+  cray-hpe.github.io/appversion-compatibility: "^1.11.0"  # App version 1.11.0 <= x.y.z < 2.0.0.
