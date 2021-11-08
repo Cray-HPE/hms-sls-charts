@@ -26,13 +26,9 @@ CHART_NAME ?= cray-hms-sls
 
 all: chart
 
-chart: v1 v2
+chart:
+	./lib/build_all_charts.sh ${CHART_NAME}
 
-v%: 
-	./lib/build_chart.sh ${CHART_NAME}/$@
-
-clean: clean-v1 clean-v2
+clean:
+	./lib/clean_all_charts.sh ${CHART_NAME}
 	rm -rf .packaged
-
-clean-v%:
-	rm -rf ${CHART_NAME}/v$*/charts

@@ -3,7 +3,7 @@ set -xeo pipefail
 
 CHART_PATH=$1
 if [[ -z "$CHART_PATH" ]]; then
-    "Error: Chart path not path not provided"
+    "Error: Chart path not provided"
     exit 1
 fi
 
