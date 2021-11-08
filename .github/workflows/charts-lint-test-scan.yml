@@ -15,6 +15,8 @@ jobs:
       ct-config: |
         chart-dirs:
           - cray-hms-sls
+        chart-repos:
+          - cray-algol60=https://artifactory.algol60.net/artifactory/csm-helm-charts
         validate-maintainers: false
       scan-image-snyk-args: "--severity-threshold=high"
     secrets:
