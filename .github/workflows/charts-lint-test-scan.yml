@@ -9,15 +9,13 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
+    # uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
+    # TODO Merge changes into Cray-HPE/.github
+    uses: Cray-HPE/hms-sls-charts/.github/workflows/charts-lint-test-scan.other.yml@feature/CASMHMS-5197
+
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
-      ct-config: |
-        chart-dirs:
-          - cray-hms-sls
-        chart-repos:
-          - cray-algol60=https://artifactory.algol60.net/artifactory/csm-helm-charts
-        validate-maintainers: false
+      ct-yaml: ct.yaml
       scan-image-snyk-args: "--severity-threshold=high"
     secrets:
       snyk-token: ${{ secrets.SNYK_TOKEN }}
