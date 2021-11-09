@@ -29,6 +29,11 @@ all: chart
 chart:
 	./lib/build_all_charts.sh ./charts
 
+lint:
+	git checkout -- ct.yaml
+	./lib/update-ct-config-with-chart-dirs.sh charts
+	ct lint --config ct.yaml
+
 clean:
 	./lib/clean_all_charts.sh ./charts
 	rm -rf .packaged
