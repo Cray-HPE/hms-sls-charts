@@ -9,9 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    # uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
-    # TODO Merge changes into Cray-HPE/.github
-    uses: Cray-HPE/hms-sls-charts/.github/workflows/charts-lint-test-scan.other.yml@feature/CASMHMS-5197
+    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@feature/add-ct-yaml-post-script
 
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
