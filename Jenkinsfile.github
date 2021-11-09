@@ -10,13 +10,13 @@ def getUnstableBuildChartSuffix(Map config = [:]) {
         config.isStable = config.isStable.toBoolean()
     }
 
+    if (config.isStable) {
+        return "" // For a stable build no suffix is required
+    }
+
     def buildDate = generateTimestamp()
 
     def gitSha = env.GIT_COMMIT.substring(0, 7)
-
-    if (config.isStable) {
-        return version
-    }
 
     return "${buildDate}+${gitSha}"
 }
