@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@feature/add-ct-yaml-post-script
+    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
 
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
