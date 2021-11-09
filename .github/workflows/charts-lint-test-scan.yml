@@ -15,6 +15,7 @@ jobs:
 
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
+      test-charts: false
       ct-yaml: ct.yaml
       ct-yaml-post-script: ./lib/update-ct-config-with-chart-dirs.sh
       scan-image-snyk-args: "--severity-threshold=high"
