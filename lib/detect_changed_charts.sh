@@ -11,6 +11,7 @@ fi
 echo "Target branch: $TARGET_BRANCH" 1>&2;
 
 # First, get the lastest tags from the upstream repo
+echo "Fetching tags" 1>&2;
 git fetch --tags > /dev/null
 
 # Second idenfiy any charts that have changed between this branch and the target branch

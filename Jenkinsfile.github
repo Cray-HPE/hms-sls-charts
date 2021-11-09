@@ -42,7 +42,9 @@ pipeline {
     stages {
         stage("Charts") {
             steps {
-                sh "make changed-charts"
+                withCredentials([gitUsernamePassword(credentialsId: 'deploykey-write-hms-sls-charts')]) {
+                    sh "make changed-charts"
+                }
             }
         }
 
