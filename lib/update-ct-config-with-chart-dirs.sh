@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-# YQ Version 4+ is required for this script
+# YQ Version 4 is required for this script
 
 set -xeo pipefail
 

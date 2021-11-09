@@ -11,6 +11,12 @@ if [[ -z "$CHARTS_BASE" ]]; then
 fi
 
 for CHART_PATH in $CHARTS_BASE/v*/*; do
+    echo
+    echo "----------------------------------------"
     echo "Cleaning chart: ${CHART_PATH}"
+    echo "----------------------------------------"
+    echo
+
     rm -rvf ${CHART_PATH}/charts
+    rm -rvf ${CHART_PATH}/tmpcharts
 done

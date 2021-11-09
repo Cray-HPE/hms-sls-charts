@@ -23,11 +23,15 @@
 
 # Helm Chart
 CHART_NAME ?= cray-hms-sls
+TARGET_BRANCH ?= master
+UNSTABLE_BUILD_SUFFIX ?= "" # If this variable is the empty string, then this is a stable build
+							# Otherwise, if this variable is non-empty then this is an unstable build
 
-all: chart
-
-chart:
+all-charts:
 	./lib/build_all_charts.sh ./charts
+
+changed-charts:
+	./lib/build_changed_charts.sh ./charts ${TARGET_BRANCH} ${BUILD_TYPE}
 
 lint:
 	git checkout -- ct.yaml

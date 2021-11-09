@@ -40,9 +40,9 @@ pipeline {
     }
 
     stages {
-        stage("Chart") {
+        stage("Charts") {
             steps {
-                sh "make chart"
+                sh "make changed-charts"
             }
         }
 
