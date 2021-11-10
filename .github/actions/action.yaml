@@ -18,6 +18,6 @@ runs:
   env:
       UNSTABLE_BUILD_SUFFIX: ${{ inputs.unstable-build-suffix }}
   args:
-    - build_changed_charts.sh
-    - ./charts
-    - ${{ inputs.target-branch }}
+    - /bin/bash
+    - -c
+    - update-ct-config-with-chart-dirs.sh charts; build_changed_charts.sh ./charts ${{ inputs.target-branch }}
