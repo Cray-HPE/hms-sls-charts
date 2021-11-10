@@ -20,6 +20,8 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
+# HMS Build scripts container image version
+HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/unstable/hms-build-scripts:0.1.0-20211110174101_695eb13
 
 # Helm Chart
 CHART_NAME ?= cray-hms-sls
@@ -28,16 +30,22 @@ UNSTABLE_BUILD_SUFFIX ?= "" # If this variable is the empty string, then this is
 							# Otherwise, if this variable is non-empty then this is an unstable build
 
 all-charts:
-	./lib/build_all_charts.sh ./charts
+	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} build_all_charts.sh ./charts
 
 changed-charts:
-	./lib/build_changed_charts.sh ./charts ${TARGET_BRANCH} ${BUILD_TYPE}
-
+	# If the repo was cloned with SSH, then the docker container needs those credentails to interact with the 
+	# locally checkouted repo. TODO for now this is broken.
+	# The following works on macOS, assuming you have ran "ssh-add" to add your SSH identity to the SSH agent.
+	docker run --rm -it -v $(shell pwd):/workspace \
+		-v /run/host-services/ssh-auth.sock:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent \
+		${HMS_BUILD_SCRIPTS_IMAGE} build_changed_charts.sh ./charts ${TARGET_BRANCH} ${BUILD_TYPE}
+	
 lint:
+	# ./lib/update-ct-config-with-chart-dirs.sh charts
 	git checkout -- ct.yaml
-	./lib/update-ct-config-with-chart-dirs.sh charts
-	ct lint --config ct.yaml
+	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} update-ct-config-with-chart-dirs.sh charts
+	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
 
 clean:
-	./lib/clean_all_charts.sh ./charts
+	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} clean_all_charts.sh ./charts
 	rm -rf .packaged
