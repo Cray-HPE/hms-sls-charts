@@ -31,7 +31,7 @@ UNSTABLE_BUILD_SUFFIX ?= "" # If this variable is the empty string, then this is
 all-charts:
 	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} build_all_charts.sh ./charts
 
-changed-charts:
+changed-charts: ct-config
 	# If the repo was cloned with SSH, then the docker container needs those credentails to interact with the 
 	# locally checkouted repo. TODO for now this is broken.
 	# The following works on macOS, assuming you have ran "ssh-add" to add your SSH identity to the SSH agent.
