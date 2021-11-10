@@ -10,7 +10,8 @@ image:
   repository: artifactory.algol60.net/csm-docker/stable/cray-sls
   pullPolicy: IfNotPresent
 
-schemaVersion: "3"
+# TODO this should be moved to the database migration job, as it doens't need to be told as it should know as the schema version should be baked into the image.
+schemaVersion: "3"  # This needs to match the database schema version that the application requires
 schemaStorageClass: ceph-cephfs-external
 schemaAccessMode: ReadWriteMany
 
