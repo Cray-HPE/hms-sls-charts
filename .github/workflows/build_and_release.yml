@@ -1,11 +1,17 @@
-name: Build and Release Helm charts
+name: Build and Publish Helm charts
 on: [push]
 
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Build changed charts
+      uses: Cray-HPE/hms-build-scripts@master
+    
+    # - name: Create Git tags for changed charts
+    # - name: Publish Helm charts
