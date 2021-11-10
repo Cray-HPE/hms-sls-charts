@@ -11,7 +11,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build changed charts
-      uses: ./.github/actions/action.yaml
+      uses: ./.github/actions/
     
     # - name: Create Git tags for changed charts
     # - name: Publish Helm charts
