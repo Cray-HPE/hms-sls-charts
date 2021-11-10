@@ -12,7 +12,7 @@ jobs:
         fetch-depth: 0
     
     - name: Generate build suffix
-      uses: Cray-HPE/generate-unstable-build-suffix@master
+      uses: Cray-HPE/hms-build-scripts/generate-unstable-build-suffix@master
       id: build-suffix
 
     - name: Build changed charts
