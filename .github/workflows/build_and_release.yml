@@ -11,7 +11,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build changed charts
-      uses: Cray-HPE/hms-build-scripts@master
+      uses: ./.github/actions/action.yaml
     
     # - name: Create Git tags for changed charts
     # - name: Publish Helm charts
