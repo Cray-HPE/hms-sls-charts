@@ -20,18 +20,16 @@ jobs:
     - name: Build information
       shell: bash
       run: | 
-        echo Stable Build:          ${{ steps.build-suffix.outputs.stable-build }};
-        echo Unstable build prefix: ${{ steps.build-suffix.outputs.unstable-build-suffix }}
-      if: steps.build-suffix.outputs.stable-build
+        echo Build prefix: ${{ steps.build-suffix.outputs.build-suffix }}
 
     - name: Build changed charts
       uses: Cray-HPE/hms-build-scripts/build-changed-charts-action@master
       with:
-        unstable-build-suffix: ${{ steps.build-suffix.outputs.unstable-build-suffix }}
+        unstable-build-suffix: ${{ steps.build-suffix.outputs.build-suffix }}
     
     - name: Create Git tags for changed charts
       shell: bash
       run: | 
         echo ${{ steps.build-suffix.outputs.stable-build }}
-      if: steps.build-suffix.outputs.stable-build
+      if: steps.build-suffix.outputs.build-suffix == ""
     # - name: Publish Helm charts
