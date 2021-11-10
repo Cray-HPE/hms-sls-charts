@@ -12,15 +12,19 @@ jobs:
         fetch-depth: 0
     
     - name: Generate build suffix
-      uses: Cray-HPE/hms-build-scripts/generate-unstable-build-suffix@master
+      uses: Cray-HPE/hms-build-scripts/generate-build-suffix@master
       id: build-suffix
-      with:
-        stable-branches-regex: feature/CASMHMS-5197-actions # This is a test
+      # with:
+      #   stable-branches-regex: feature/CASMHMS-5197-actions # This is a test
 
     - name: Build changed charts
       uses: Cray-HPE/hms-build-scripts/build-changed-charts-action@master
       with:
         unstable-build-suffix: ${{ steps.build-suffix.outputs.unstable-build-suffix }}
     
-    # - name: Create Git tags for changed charts
+    - name: Create Git tags for changed charts
+      shell: bash
+      run: | 
+        echo ${{ steps.build-suffix.outputs.stable-build }}
+      if: steps.build-suffix.outputs.stable-build
     # - name: Publish Helm charts
