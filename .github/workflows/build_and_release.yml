@@ -9,11 +9,15 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    
+    - name: Generate build suffix
+      uses: Cray-HPE/generate-unstable-build-suffix@master
+      id: build-suffix
 
     - name: Build changed charts
       uses: Cray-HPE/hms-build-scripts/build-changed-charts-action@master
       with:
-        unstable-build-suffix: "foo"
+        unstable-build-suffix: ${{ build-suffix.outputs.unstable-build-suffix }}
     
     # - name: Create Git tags for changed charts
     # - name: Publish Helm charts
