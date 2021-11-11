@@ -14,7 +14,9 @@ jobs:
     - name: Generate build suffix
       uses: Cray-HPE/hms-build-scripts/generate-build-suffix@master
       id: build-suffix
-
+      inputs:
+        stable-branches-regex: feature/CASMHMS-5197-actions
+      
     - name: Build information
       shell: bash
       run: | 
