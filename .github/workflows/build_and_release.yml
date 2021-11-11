@@ -31,5 +31,5 @@ jobs:
       shell: bash
       run: | 
         echo ${{ steps.build-suffix.outputs.stable-build }}
-      if: steps.build-suffix.outputs.build-suffix == ""
+      if: steps.build-suffix.outputs.build-suffix == null
     # - name: Publish Helm charts
