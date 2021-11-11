@@ -14,8 +14,6 @@ jobs:
     - name: Generate build suffix
       uses: Cray-HPE/hms-build-scripts/generate-build-suffix@master
       id: build-suffix
-      with:
-        stable-branches-regex: feature/CASMHMS-5197-actions # This is a test
 
     - name: Build information
       shell: bash
@@ -30,6 +28,12 @@ jobs:
     - name: Create Git tags for changed charts
       shell: bash
       run: | 
-        echo ${{ steps.build-suffix.outputs.stable-build }}
+        for packaged_chart in .packaged/*; do
+          chart_tag=$(basename "$packaged_chart" .tgz)
+          echo "Chart tag: $chart_tag"
+          git tag $chart_tag
+        done
+
+        git push origin --tags
       if: steps.build-suffix.outputs.build-suffix == null
     # - name: Publish Helm charts
