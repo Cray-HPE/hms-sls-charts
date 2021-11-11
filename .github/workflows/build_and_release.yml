@@ -30,7 +30,7 @@ jobs:
     - name: Create Git tags for changed charts
       shell: bash
       run: | 
-        for packaged_chart in .packaged/*; do
+        for packaged_chart in $(find .packaged -mindepth 1 -maxdepth 1); do
           chart_tag=$(basename "$packaged_chart" .tgz)
           echo "Chart tag: $chart_tag"
           git tag $chart_tag
