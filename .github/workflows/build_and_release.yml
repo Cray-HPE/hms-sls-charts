@@ -14,8 +14,8 @@ jobs:
     - name: Generate build suffix
       uses: Cray-HPE/hms-build-scripts/generate-build-suffix@master
       id: build-suffix
-      with:
-        stable-branches-regex: feature/CASMHMS-5197-actions
+      # with:
+      #   stable-branches-regex: feature/CASMHMS-5197-actions
       
     - name: Build information
       shell: bash
@@ -38,4 +38,12 @@ jobs:
 
         git push origin --tags
       if: steps.build-suffix.outputs.build-suffix == null
+    
+    - uses: jfrog/setup-jfrog-cli@v1
+      env:
+        JF_ARTIFACTORY_1: ${{ secrets.ARTIFACTORY_ALGOL60_TOKEN }}
+    - run: |
+        # Ping the server
+        jfrog rt ping
+
     # - name: Publish Helm charts
