@@ -39,6 +39,13 @@ jobs:
           echo "No packaged charts found!"
           echo "::set-output name=exists::false"        
         fi
+    - name: Debug
+      run: | 
+        echo ${{ steps.packaged-charts.outputs.exists }}
+        echo ${{ steps.packaged-charts.outputs.exists == false }}
+        echo ${{ steps.packaged-charts.outputs.exists == true }}
+        echo ${{ steps.packaged-charts.outputs.exists == 0 }}
+        echo ${{ steps.packaged-charts.outputs.exists == 1 }}
 
     - name: Create Git tags for changed charts
       shell: bash
