@@ -53,7 +53,7 @@ jobs:
         COMPONENT: hms-sls-charts
         CHARTS_PATH: ./.packaged
         CHARTS_PATTERN: "*.tgz"
-        JFROG_RT_UPLOAD_OPTS: --dry-run=true
+        JFROG_RT_UPLOAD_OPTS: ""
       run: |
         echo "Stable build: $STABLE_BUILD"
 
