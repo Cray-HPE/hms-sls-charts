@@ -14,18 +14,14 @@ jobs:
     - name: Generate build suffix
       uses: Cray-HPE/hms-build-scripts/generate-build-suffix@master
       id: build-suffix
-      with:
-        stable-branches-regex: feature/CASMHMS-5197
+      # with:
+      #   stable-branches-regex: feature/CASMHMS-5197
       
-    - name: Build information
-      shell: bash
-      run: | 
-        echo Build prefix: ${{ steps.build-suffix.outputs.build-suffix }}
-
     - name: Build changed charts
       uses: Cray-HPE/hms-build-scripts/build-changed-charts-action@master
       with:
         unstable-build-suffix: ${{ steps.build-suffix.outputs.build-suffix }}
+
     - name: Check for packaged charts
       id: packaged-charts
       shell: bash
@@ -39,12 +35,7 @@ jobs:
           echo "No packaged charts found!"
           echo "::set-output name=exists::false"        
         fi
-    - name: Debug
-      run: | 
-        echo Original ${{ steps.packaged-charts.outputs.exists }}
-        echo Test     ${{ steps.packaged-charts.outputs.exists == 'true' }}
  
-
     - name: Create Git tags for changed charts
       shell: bash
       run: | 
