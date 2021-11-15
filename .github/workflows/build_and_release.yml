@@ -62,6 +62,6 @@ jobs:
         STABLE_PATH="unstable";
         if [[ "$STABLE_BUILD" == "true" ]]; then
           STABLE_PATH="stable"
-        do;
+        fi;
         TARGET_PATTERN="$ARTIFACTORY_REPO/$STABLE_PATH/$COMPONENT";
         echo "Target pattern: $TARGET"
