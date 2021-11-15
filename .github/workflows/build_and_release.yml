@@ -42,9 +42,9 @@ jobs:
     - uses: jfrog/setup-jfrog-cli@v1
       env:
         JF_ARTIFACTORY_1: ${{ secrets.ARTIFACTORY_ALGOL60_JFROG_CLI_CONFIGURATION }}
-    - run: |
-        # Ping the server
-        jfrog rt ping
+
+    - name: Verify connectivity to Artifactory
+      run: jfrog rt ping
 
     - name: Publish Helm charts
       env:
@@ -57,11 +57,14 @@ jobs:
         echo "Stable build: $STABLE_BUILD"
 
         SOURCE_PATTERN="$CHARTS_PATH/$CHARTS_PATTERN";
-        echo "Source pattern: $TARGET";
+        echo "Source pattern: $SOURCE_PATTERN";
 
         STABLE_PATH="unstable";
         if [[ "$STABLE_BUILD" == "true" ]]; then
           STABLE_PATH="stable"
         fi;
         TARGET_PATTERN="$ARTIFACTORY_REPO/$STABLE_PATH/$COMPONENT";
-        echo "Target pattern: $TARGET"
+        echo "Target pattern: $TARGET_PATTERN"
+
+    - name: Clean up
+      run: make clean
