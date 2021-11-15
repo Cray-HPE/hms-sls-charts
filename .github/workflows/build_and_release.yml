@@ -55,6 +55,11 @@ jobs:
         CHARTS_PATTERN: "*.tgz"
         JFROG_RT_UPLOAD_OPTS: ""
       run: |
+        if [[ ! -d "$CHARTS_PATH" ]]; then
+          echo "Exiting, no charts to publish"
+          exit 0
+        fi;
+
         echo "Stable build: $STABLE_BUILD"
 
         SOURCE_PATTERN="$CHARTS_PATH/$CHARTS_PATTERN";
