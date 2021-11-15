@@ -56,7 +56,7 @@ jobs:
         JFROG_RT_UPLOAD_OPTS: ""
       run: |
         if [[ ! -d "$CHARTS_PATH" ]]; then
-          echo "Exiting, no charts to publish"
+          echo "Skipping, no charts to publish!"
           exit 0
         fi;
 
