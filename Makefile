@@ -21,7 +21,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 # HMS Build scripts container image version
-HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:0.1.0
+HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:0.3.2
 
 # Helm Chart
 TARGET_BRANCH ?= master
@@ -29,7 +29,7 @@ UNSTABLE_BUILD_SUFFIX ?= "" # If this variable is the empty string, then this is
 							# Otherwise, if this variable is non-empty then this is an unstable build
 
 all-charts:
-	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} build_all_charts.sh ./charts
+	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} build_all_charts.sh ./charts
 
 changed-charts: ct-config
 	# If the repo was cloned with SSH, then the docker container needs those credentails to interact with the 
@@ -44,8 +44,8 @@ ct-config:
 	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} update-ct-config-with-chart-dirs.sh charts
 
 lint: ct-config
-	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
+	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
 
 clean:
-	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} clean_all_charts.sh ./charts
+	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} clean_all_charts.sh ./charts
 	rm -rf .packaged
