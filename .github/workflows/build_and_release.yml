@@ -33,8 +33,10 @@ jobs:
         CHARTS_PATH: ./.packaged
       run: |
         if [[ -d "$CHARTS_PATH" ]]; then
+          echo "Found packaged charts!"
           echo "::set-output name=exists::true"
         else:
+          echo "No packaged charts found!"
           echo "::set-output name=exists::false"        
         fi
 
