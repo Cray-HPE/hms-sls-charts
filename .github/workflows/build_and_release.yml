@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build_and_release:
     name: Build and Publish Helm charts
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -39,11 +39,11 @@ jobs:
         git push origin --tags
       if: steps.build-suffix.outputs.build-suffix == null
     
-    # - uses: jfrog/setup-jfrog-cli@v1
-    #   env:
-    #     JF_ARTIFACTORY_1: ${{ secrets.ARTIFACTORY_ALGOL60_TOKEN }}
-    # - run: |
-    #     # Ping the server
-    #     jfrog rt ping
+    - uses: jfrog/setup-jfrog-cli@v1
+      env:
+        JF_ARTIFACTORY_1: ${{ secrets.ARTIFACTORY_ALGOL60_JFROG_CLI_CONFIGURATION }}
+    - run: |
+        # Ping the server
+        jfrog rt ping
 
     # - name: Publish Helm charts
