@@ -53,6 +53,7 @@ jobs:
         COMPONENT: hms-sls-charts
         CHARTS_PATH: ./.packaged
         CHARTS_PATTERN: "*.tgz"
+        JFROG_RT_UPLOAD_OPTS: --dry-run=true
       run: |
         echo "Stable build: $STABLE_BUILD"
 
@@ -63,8 +64,8 @@ jobs:
         if [[ "$STABLE_BUILD" == "true" ]]; then
           STABLE_PATH="stable"
         fi;
-        TARGET_PATTERN="$ARTIFACTORY_REPO/$STABLE_PATH/$COMPONENT";
+        TARGET_PATTERN="$ARTIFACTORY_REPO/$STABLE_PATH/$COMPONENT/";
         echo "Target pattern: $TARGET_PATTERN";
 
-        jfrog rt upload "$SOURCE_PATTERN" "$TARGET_PATTERN"
+        jfrog rt upload $JFROG_RT_UPLOAD_OPTS "$SOURCE_PATTERN" "$TARGET_PATTERN"
 
