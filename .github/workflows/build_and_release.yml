@@ -41,13 +41,9 @@ jobs:
         fi
     - name: Debug
       run: | 
-        echo ${{ steps.packaged-charts.outputs.exists }}
-        echo ${{ steps.packaged-charts.outputs.exists == false }}
-        echo ${{ steps.packaged-charts.outputs.exists == true }}
-        echo ${{ steps.packaged-charts.outputs.exists == 'false' }}
-        echo ${{ steps.packaged-charts.outputs.exists == 'true' }}
-        echo ${{ steps.packaged-charts.outputs.exists == 0 }}
-        echo ${{ steps.packaged-charts.outputs.exists == 1 }}
+        echo Original ${{ steps.packaged-charts.outputs.exists }}
+        echo Test     ${{ steps.packaged-charts.outputs.exists == 'true' }}
+ 
 
     - name: Create Git tags for changed charts
       shell: bash
@@ -59,16 +55,16 @@ jobs:
         done
 
         git push origin --tags
-      if: steps.packaged-charts.outputs.exists == false && (steps.build-suffix.outputs.build-suffix == null)
+      if: steps.packaged-charts.outputs.exists == 'true' && (steps.build-suffix.outputs.build-suffix == null)
     
     - uses: jfrog/setup-jfrog-cli@v1
       env:
         JF_ARTIFACTORY_1: ${{ secrets.ARTIFACTORY_ALGOL60_JFROG_CLI_CONFIGURATION }}
-      if: steps.packaged-charts.outputs.exists == false
+      if: steps.packaged-charts.outputs.exists == 'true'
 
     - name: Verify connectivity to Artifactory
       run: jfrog rt ping
-      if: steps.packaged-charts.outputs.exists == false
+      if: steps.packaged-charts.outputs.exists == 'true'
 
     - name: Publish Helm charts
       shell: bash
@@ -93,6 +89,6 @@ jobs:
         echo "Target pattern: $TARGET_PATTERN";
 
         jfrog rt upload $JFROG_RT_UPLOAD_OPTS "$SOURCE_PATTERN" "$TARGET_PATTERN"
-      if: steps.packaged-charts.outputs.exists == false
+      if: steps.packaged-charts.outputs.exists == 'true'
 
 
