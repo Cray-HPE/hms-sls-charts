@@ -46,4 +46,22 @@ jobs:
         # Ping the server
         jfrog rt ping
 
-    # - name: Publish Helm charts
+    - name: Publish Helm charts
+      env:
+        ARTIFACTORY_REPO: csm-helm-charts
+        STABLE_BUILD: ${{ steps.build-suffix.outputs.build-suffix == null }}
+        COMPONENT: hms-sls-charts
+        CHARTS_PATH: ./.packaged
+        CHARTS_PATTERN: "*.tgz"
+      run: |
+        echo "Stable build: $STABLE_BUILD"
+
+        SOURCE_PATTERN="$CHARTS_PATH/$CHARTS_PATTERN";
+        echo "Source pattern: $TARGET";
+
+        STABLE_PATH="unstable";
+        if [[ "$STABLE_BUILD" == "true" ]]; then
+          STABLE_PATH="stable"
+        do;
+        TARGET_PATTERN="$ARTIFACTORY_REPO/$STABLE_PATH/$COMPONENT";
+        echo "Target pattern: $TARGET"
