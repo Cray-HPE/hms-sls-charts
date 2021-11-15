@@ -44,6 +44,8 @@ jobs:
         echo ${{ steps.packaged-charts.outputs.exists }}
         echo ${{ steps.packaged-charts.outputs.exists == false }}
         echo ${{ steps.packaged-charts.outputs.exists == true }}
+        echo ${{ steps.packaged-charts.outputs.exists == "false" }}
+        echo ${{ steps.packaged-charts.outputs.exists == "true" }}
         echo ${{ steps.packaged-charts.outputs.exists == 0 }}
         echo ${{ steps.packaged-charts.outputs.exists == 1 }}
 
