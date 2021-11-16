@@ -20,10 +20,6 @@ jobs:
       scan-images-ignore-list: |
         [
           "artifactory.algol60.net/csm-docker/stable/cray-sls:latest",
-          "dtr.dev.cray.com/cache/postgres:13.2",
-          "dtr.dev.cray.com/cray/cray-postgres-db-backup:0.1.0",
-          "dtr.dev.cray.com/cray/cray-sls:latest",
-          "dtr.dev.cray.com/loftsman/docker-kubectl:0.2.0"
         ]
       scan-chart-snyk-args: "--severity-threshold=high"
     secrets:
