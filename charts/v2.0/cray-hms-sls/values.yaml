@@ -97,4 +97,4 @@ cray-service:
     uri: "/"
 
 global:
-  appVersion: 1.11.1
+  appVersion: 1.11.0
