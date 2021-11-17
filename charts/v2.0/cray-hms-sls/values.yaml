@@ -97,4 +97,4 @@ cray-service:
     uri: "/"
 
 global:
-  appVersion: latest  # By default use the latest tag, unless overiden via Helm
+  appVersion: 1.11.0

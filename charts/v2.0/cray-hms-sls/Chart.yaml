@@ -13,5 +13,4 @@ dependencies:
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
 annotations:
   artifacthub.io/license: MIT
-  cray-hpe.github.io/allowed-csm-versions: ">= 1.2.0"  # CSM 1.2 and later
-  cray-hpe.github.io/appversion-compatibility: "^1.11.0"  # App version 1.11.0 <= x.y.z < 2.0.0. Allow any later container image before a major bump
+appVersion: 1.11.0
