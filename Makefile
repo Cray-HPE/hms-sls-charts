@@ -44,7 +44,7 @@ ct-config:
 	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} update-ct-config-with-chart-dirs.sh charts
 
 verify-application-versions: ct-config
-	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} verify_all_charts_application_versions.sh charts
+	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} verify_all_charts_application_versions.sh charts
 
 lint: ct-config verify-application-versions
 	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
