@@ -1,0 +1,11 @@
+name: Build and Publish Helm charts
+on: [push]
+
+jobs:
+  build_and_release:
+    uses: Cray-HPE/hms-build-scripts/.github/workflows/build_and_release.yaml@master
+    with:
+      artifactory-component: ${{ github.event.repository.name }}
+      # target-branch: feature/CASMHMS-5197
+    secrets:
+      jfrog-cli-configuration: ${{ secrets.ARTIFACTORY_ALGOL60_JFROG_CLI_CONFIGURATION }}
