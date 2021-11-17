@@ -13,4 +13,4 @@ dependencies:
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
 annotations:
   artifacthub.io/license: MIT
-appVersion: 1.11.0
+appVersion: 1.11.1
