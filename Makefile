@@ -21,7 +21,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 # HMS Build scripts container image version
-HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:0.3.3
+HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:latest
 
 # Helm Chart
 TARGET_BRANCH ?= master
@@ -43,7 +43,10 @@ ct-config:
 	git checkout -- ct.yaml
 	docker run --rm -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} update-ct-config-with-chart-dirs.sh charts
 
-lint: ct-config
+verify-application-versions: ct-config
+	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} verify_all_charts_application_versions.sh charts
+
+lint: ct-config verify-application-versions
 	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
 
 clean:

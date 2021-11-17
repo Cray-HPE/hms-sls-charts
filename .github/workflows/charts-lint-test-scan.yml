@@ -9,10 +9,11 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
+    uses: Cray-HPE/hms-build-scripts/.github/workflows/charts-lint-test-scan.yml@master
 
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
+      lint-post-script: make verify-application-versions
       test-charts: false
       ct-yaml: ct.yaml
       ct-yaml-post-script: make ct-config
