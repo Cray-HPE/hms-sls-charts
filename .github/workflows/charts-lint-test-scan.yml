@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@feature/ignore-images
+    uses: Cray-HPE/.github/.github/workflows/charts-lint-test-scan.yml@main
 
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
@@ -17,10 +17,6 @@ jobs:
       ct-yaml: ct.yaml
       ct-yaml-post-script: ./lib/update-ct-config-with-chart-dirs.sh
       scan-image-snyk-args: "--severity-threshold=high"
-      scan-images-ignore-list: |
-        [
-          "artifactory.algol60.net/csm-docker/stable/cray-sls:latest",
-        ]
       scan-chart-snyk-args: "--severity-threshold=high"
     secrets:
       snyk-token: ${{ secrets.SNYK_TOKEN }}
