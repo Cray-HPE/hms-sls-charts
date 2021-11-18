@@ -50,5 +50,6 @@ lint: ct-config verify-application-versions
 	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} ct lint --config ct.yaml
 
 clean:
+	git checkout -- ct.yaml
 	docker run --rm -it -v $(shell pwd):/workspace ${HMS_BUILD_SCRIPTS_IMAGE} clean_all_charts.sh ./charts
 	rm -rf .packaged
