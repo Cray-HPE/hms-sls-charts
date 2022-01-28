@@ -1,9 +1,8 @@
 name: Build and Publish Helm charts
 on: [push]
-
 jobs:
   build_and_release:
-    uses: Cray-HPE/hms-build-scripts/.github/workflows/build_and_release.yaml@master
+    uses: Cray-HPE/hms-build-scripts/.github/workflows/build_and_release.yaml@v1
     with:
       artifactory-component: cray-hms-sls
     secrets:
