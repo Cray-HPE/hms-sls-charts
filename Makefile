@@ -21,7 +21,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 # HMS Build scripts container image version
-HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:latest
+HMS_BUILD_SCRIPTS_IMAGE ?= artifactory.algol60.net/csm-docker/stable/hms-build-scripts:v1
 
 # Helm Chart
 TARGET_BRANCH ?= master

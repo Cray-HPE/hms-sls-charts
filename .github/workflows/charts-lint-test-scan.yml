@@ -10,7 +10,6 @@ on:
 jobs:
   lint-test-scan:
     uses: Cray-HPE/hms-build-scripts/.github/workflows/charts-lint-test-scan.yml@master
-
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
       lint-post-script: make verify-application-versions
@@ -21,3 +20,5 @@ jobs:
       scan-chart-snyk-args: "--severity-threshold=high"
     secrets:
       snyk-token: ${{ secrets.SNYK_TOKEN }}
+  build_and_release:
+    uses: Cray-HPE/hms-build-scripts/.github/workflows/build_and_release.yaml@v1
