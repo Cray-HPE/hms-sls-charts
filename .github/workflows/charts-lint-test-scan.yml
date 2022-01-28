@@ -9,8 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/hms-build-scripts/.github/workflows/charts-lint-test-scan.yml@master
-
+    uses: Cray-HPE/hms-build-scripts/.github/workflows/charts-lint-test-scan.yml@v1
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
       lint-post-script: make verify-application-versions
