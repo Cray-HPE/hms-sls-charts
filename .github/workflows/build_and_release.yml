@@ -1,5 +1,5 @@
 name: Build and Publish Helm charts
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   build_and_release:
     uses: Cray-HPE/hms-build-scripts/.github/workflows/build_and_release.yaml@v1
