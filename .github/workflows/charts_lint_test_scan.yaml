@@ -7,13 +7,11 @@ on:
   workflow_dispatch:
 jobs:
   lint-test-scan:
-    uses: Cray-HPE/hms-build-scripts/.github/workflows/charts-lint-test-scan.yml@v1
+    uses: Cray-HPE/hms-build-chart-workflows/.github/workflows/charts_lint_test_scan.yaml@v1
     with:
       lint-charts: ${{ github.event_name == 'pull_request' }}
-      lint-post-script: make verify-application-versions
       test-charts: false
       ct-yaml: ct.yaml
-      ct-yaml-post-script: make ct-config
       scan-image-snyk-args: "--severity-threshold=high"
       scan-chart-snyk-args: "--severity-threshold=high"
     secrets:
