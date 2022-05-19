@@ -1,0 +1,33 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-test-functional"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "1" #run this after smoke!
+
+  labels:
+    app.kubernetes.io/name: "{{ .Release.Name }}-test-functional"
+
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-test-functional"
+      labels:
+        app.kubernetes.io/managed-by:  "{{ include "cray-service.name" . }}"
+        app.kubernetes.io/instance:  "{{ .Release.Name }}-test-functional"
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+      containers:
+        - name: "functional"
+          image: "{{ .Values.tests.image.repository }}:{{ .Values.global.testVersion }}"
+          imagePullPolicy: "{{ .Values.tests.image.pullPolicy }}"
+          command: ["/bin/sh", "-c"]
+          args: [ "until curl --head localhost:15000 ; do echo Waiting for Sidecar; sleep 3 ; done ; echo Sidecar available; entrypoint.sh functional -c /src/libs/tavern_global_config.yaml -p /src/app"]
