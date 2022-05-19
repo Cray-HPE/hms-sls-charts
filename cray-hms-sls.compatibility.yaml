@@ -31,3 +31,10 @@ chartValidationLog:
   result: PASS
   tester: rsjostrand-hpe
   date: 2021-11-17
+- chartVersion: 2.1.0-20220519212819+e1136a1
+  applicationVersion: 1.19.0
+  csm: 1.2.0-beta.115
+  environment: baremetal
+  result: PASS
+  tester: schooler-hpe
+  date: 2022-05-19
