@@ -12,9 +12,12 @@ metadata:
     app.kubernetes.io/name: "{{ .Release.Name }}-test-functional"
 
 spec:
+  backoffLimit: 0
   template:
     metadata:
       name: "{{ .Release.Name }}-test-functional"
+      annotations:
+        "proxy.istio.io/config": '{ "holdApplicationUntilProxyStarts": true }'
       labels:
         app.kubernetes.io/managed-by:  "{{ include "cray-service.name" . }}"
         app.kubernetes.io/instance:  "{{ .Release.Name }}-test-functional"
@@ -30,4 +33,4 @@ spec:
           image: "{{ .Values.tests.image.repository }}:{{ .Values.global.testVersion }}"
           imagePullPolicy: "{{ .Values.tests.image.pullPolicy }}"
           command: ["/bin/sh", "-c"]
-          args: [ "until curl --head localhost:15000 ; do echo Waiting for Sidecar; sleep 3 ; done ; echo Sidecar available; entrypoint.sh functional -c /src/libs/tavern_global_config.yaml -p /src/app"]
+          args: [ "entrypoint.sh functional -c /src/libs/tavern_global_config.yaml -p /src/app"]
