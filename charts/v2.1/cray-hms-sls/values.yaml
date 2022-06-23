@@ -1,13 +1,7 @@
 ---
 global:
-  appVersion: 1.19.0
-  testVersion: 1.19.0
-
-kubectl:
-  image:
-    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
-    tag: 1.19.15
-    pullPolicy: IfNotPresent
+  appVersion: 1.20.0
+  testVersion: 1.20.0
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/cray-sls
@@ -16,6 +10,12 @@ image:
 tests:
   image:
     repository: artifactory.algol60.net/csm-docker/stable/cray-sls-test
+    pullPolicy: IfNotPresent
+
+kubectl:
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.19.15
     pullPolicy: IfNotPresent
 
 # TODO this should be moved to the database migration job, as it doens't need to be told as it should know as the schema version should be baked into the image.
