@@ -88,6 +88,9 @@ spec:
         app: cray-sls-init-load
     spec:
       restartPolicy:      OnFailure
+      securityContext:
+        fsGroup: 65534
+        runAsUser: 65534
       serviceAccountName: "jobs-watcher"
       initContainers:
         - name: cray-sls-init
