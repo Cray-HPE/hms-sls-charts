@@ -1,0 +1,36 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-test-smoke"
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "-1" #run this first!
+
+  labels:
+    app.kubernetes.io/name: "{{ .Release.Name }}-test-smoke"
+
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-test-smoke"
+      annotations:
+        "proxy.istio.io/config": '{ "holdApplicationUntilProxyStarts": true }'
+      labels:
+        app.kubernetes.io/managed-by:  "{{ include "cray-service.name" . }}"
+        app.kubernetes.io/instance:  "{{ .Release.Name }}-test-smoke"
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+      containers:
+        - name: "smoke"
+          image: "{{ .Values.tests.image.repository }}:{{ .Values.global.testVersion }}"
+          imagePullPolicy: "{{ .Values.tests.image.pullPolicy }}"
+          command: ["/bin/sh", "-c"]
+          args: [ "entrypoint.sh smoke -f smoke.json -u http://cray-sls"]
