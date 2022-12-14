@@ -1,6 +1,6 @@
 apiVersion: v2
 name: "cray-hms-sls"
-version: 3.0.1
+version: 3.0.2
 description: "Kubernetes resources for cray-hms-sls"
 home: https://github.com/Cray-HPE/hms-sls-charts
 sources:
@@ -13,4 +13,4 @@ dependencies:
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
 annotations:
   artifacthub.io/license: MIT
-appVersion: 1.28.0
+appVersion: 2.0.0

@@ -33,4 +33,4 @@ spec:
           image: "{{ .Values.tests.image.repository }}:{{ .Values.global.testVersion }}"
           imagePullPolicy: "{{ .Values.tests.image.pullPolicy }}"
           command: ["/bin/sh", "-c"]
-          args: [ "entrypoint.sh smoke -f smoke.json -u http://cray-sls"]
+          args: ["entrypoint.sh smoke -f smoke.json -u http://cray-sls"]

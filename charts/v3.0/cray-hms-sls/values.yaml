@@ -1,7 +1,7 @@
 ---
 global:
-  appVersion: 1.28.0
-  testVersion: 1.28.0
+  appVersion: 2.0.0
+  testVersion: 2.0.0
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/cray-sls
@@ -9,7 +9,7 @@ image:
 
 tests:
   image:
-    repository: artifactory.algol60.net/csm-docker/stable/cray-sls-test
+    repository: artifactory.algol60.net/csm-docker/stable/cray-sls-hmth-test
     pullPolicy: IfNotPresent
 
 kubectl:
