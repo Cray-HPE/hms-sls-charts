@@ -99,6 +99,7 @@ cray-service:
 
 cray-postgresql:
   nameOverride: cray-sls
+  fullnameOverride: cray-sls
   sqlCluster:
     enabled: true
     enableLogicalBackup: true
