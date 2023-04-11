@@ -76,6 +76,10 @@ cray-service:
               key: password
         - name: SLS_MAX_DATABASE_CONNECTIONS
           value: "25"
+        - name: POSTGRES_HOST
+          value: cray-sls-postgres
+        - name: POSTGRES_PORT
+          value: "5432"
       livenessProbe:
         httpGet:
           port: 8376
