@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cray-sls-config
+  namespace: services
+data:
+  cache.enabled: "{{ .Values.configuration.cache.enabled }}"
+  cache.ttlSeconds: "{{ .Values.configuration.cache.ttlSeconds }}"
+  cache.capacity: "{{ .Values.configuration.cache.capacity }}"
+  database.maxConnections: "{{ .Values.configuration.database.maxConnections }}"
