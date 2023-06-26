@@ -1,6 +1,6 @@
 apiVersion: v2
 name: "cray-hms-sls"
-version: 5.1.0
+version: 5.1.1
 description: "Kubernetes resources for cray-hms-sls"
 home: https://github.com/Cray-HPE/hms-sls-charts
 sources:
