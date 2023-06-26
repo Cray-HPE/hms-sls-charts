@@ -4,8 +4,3 @@ jobs:
   k8s_api_checker:
     uses: Cray-HPE/hms-build-chart-workflows/.github/workflows/k8s_api_checker.yaml@v2
     secrets: inherit
-    with:
-      # ignore-errors can be removed once the deprecated APIs are updated.
-      # Setting this to true causes the workflow to always complete as a success
-      # however the reports are still generated.
-      ignore-errors: true
