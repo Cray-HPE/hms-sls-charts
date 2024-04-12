@@ -82,6 +82,7 @@ metadata:
   labels:
     app: cray-sls-init-load
 spec:
+  ttlSecondsAfterFinished: {{ .Values.slsInitJobTTL }}
   template:
     metadata:
       labels:
