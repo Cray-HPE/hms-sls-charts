@@ -38,6 +38,7 @@ chartVersionToApplicationVersion:
   "5.1.4": "2.2.0" # rebuild to pick up 1.0.4 postgres chart for 1.5
   "5.1.5": "2.2.0"
   "5.1.6": "2.2.0"
+  "5.1.7": "2.4.0" # contains virtual node support
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
