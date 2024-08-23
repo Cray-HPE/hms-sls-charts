@@ -1,7 +1,7 @@
 ---
 global:
-  appVersion: 2.2.0
-  testVersion: 2.2.0
+  appVersion: 2.4.0
+  testVersion: 2.4.0
 
 image:
   repository: artifactory.algol60.net/csm-docker/stable/cray-sls
