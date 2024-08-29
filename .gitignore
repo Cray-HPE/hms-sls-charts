@@ -22,6 +22,9 @@ Chart.lock
 # VSCode
 .vscode
 
+# vim
+*.swp
+
 # Prevent certificates from getting checked in
 *.ca
 *.cer
