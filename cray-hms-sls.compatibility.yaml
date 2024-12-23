@@ -48,6 +48,7 @@ chartVersionToApplicationVersion:
   "5.1.7": "2.4.0" # 2.4.0 contains virtual node support
   "6.0.0": "2.5.0"
   "6.0.1": "2.6.0"
+  "6.0.2": "2.7.0"
 
 # Test results for combinations of Chart, Application, and CSM versions.
 chartValidationLog:
