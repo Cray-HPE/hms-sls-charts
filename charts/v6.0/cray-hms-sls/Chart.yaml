@@ -14,6 +14,9 @@ dependencies:
   - name: cray-postgresql
     version: "~1.0"
     repository: https://artifactory.algol60.net/artifactory/csm-helm-charts
+appVersion: 2.7.0  # update pprof image version below as well
 annotations:
+  artifacthub.io/images: |-
+    - name: cray-sls-pprof
+      image: artifactory.algol60.net/csm-docker/stable/cray-sls-pprof:2.7.0
   artifacthub.io/license: MIT
-appVersion: 2.7.0
