@@ -16,7 +16,7 @@ chartVersionToCSMVersion:
   ">=5.0.0": ">=1.5.0"
   ">=5.1.0": ">=1.5.0" # 5.1.0 contains features specific to k8s 1.22 or later
   ">=6.0.0": ">=1.6.0" # 6.0.0 contains features specific to k8s 1.24 or later
-  ">=6.1.0": ">=1.7.0"
+  ">=6.1.0": ">=1.7.0" # 6.1.0 contains risky module/image updates that need long soak time for 1.7.0
 
 # The application version must be compliant to semantic versioning.
 # If the application makes a backwards incompatible change, then its major version needs to be increment.
